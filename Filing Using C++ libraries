@@ -1,0 +1,124 @@
+#include <iostream>
+#include <fstream>
+#include <cstring>
+#include <string>
+using namespace std;
+	//Function 1
+void max_hs(string arr2[],int a[], int b[], int c[],int d[])
+{
+	 ifstream in ;
+	in.open("Batsman.txt");
+	ofstream out;
+out.open("Output.txt");
+	int max=0,count=0;
+	for(int k=0;k<10;k++)
+	{
+		if(max<c[k])
+	{
+		max=c[k];
+		
+		}
+		else if ( max > c[k])
+		{	max= max;
+		
+	}
+	}
+	cout<<endl<<endl;
+	//Player Record
+	for(int l=1;l<10;l++)
+	{	
+		count++;
+		if (c[l]==max)
+	break;
+		
+	}
+	cout<<"PLAYER STATS"<<endl;
+	cout<<"NAME: "<<arr2[count]<<endl;
+	cout<<"MATCHES:  "<<a[count]<<endl;
+	cout<<"RUNS: "<<b[count]<<endl;
+	cout<<"HIGHSCORE: "<<c[count]<<endl;
+	cout<<"CENTURIES: "<<d[count] <<endl;
+	cout<<endl<<endl;
+
+	out<<endl<<endl;
+	out<<"PLAYER STATS"<<endl;
+	out<<"NAME: "<<arr2[count]<<endl;
+	out<<"MATCHES:  "<<a[count]<<endl;
+    out<<"RUNS: "<<b[count]<<endl;
+	out<<"HIGHSCORE: "<<c[count]<<endl;
+	out<<"CENTURIES: "<<d[count] <<endl;
+	out<<endl<<endl;
+}
+//Function 2
+void avg_matches(string arr2[],int a[], int b[], int c[],int d[])
+{
+	double sum=0,count=0;
+	for (int i=0;i<10;i++)
+	{
+		sum= sum+a[i];
+		count++;
+	}
+	cout<<"Average Number Of Matches Played By Top Pakistani Batsmen are: "<<sum/count<<endl<<endl;
+}
+//Function 3
+//Ascending Order
+void ascending_order(string arr2[],int a[], int b[], int c[],int d[])
+{
+	 ifstream in ;
+	ofstream out;
+	int ascending;
+		cout<<"Ascending Order Of Runs"<<endl;
+ for(int i=0; i<10; i++)
+            {
+                for(int j=i+1; j<10; j++)
+                    {
+                        if(b[i]>b[j])
+                            {
+                                ascending=b[i];
+                                b[i]=b[j];
+                                b[j]=ascending;
+                            }
+                    }
+                cout <<arr2[i]<<"\t"<<a[i]<<"\t"<< b[i] <<"\t"<<c[i]<<"\t"<<d[i]<< endl;
+            }
+
+cout<<endl;
+}
+//Function 4
+void display(string arr2[],int a[], int b[], int c[],int d[])
+{
+	cout<<"Player"<<"\t\t\t"<<"Matches"<<"\t\t"<<"Runs"<<"\t\t"<<"Highscore"<<"   "<<"Centuries"<<endl;
+	for( int i=0;i<10;i++)
+    {
+	  cout << arr2[i] << "\t\t" << a[i] << "\t\t" << b[i] <<" \t\t"<< c[i] <<"\t\t"<< d[i] << endl;
+	}
+}
+int main()
+{
+    ifstream in ;
+	in.open("Batsman.txt");
+	ofstream out;
+out.open("Output.txt");
+    string firstname, secondname,player[10];
+    int mat,runs,hs,cent,ascending;
+	int matches[10],run[10],highscore[10],centuries[10];
+	
+	out<<"Player"<<"\t\t\t"<<"Matches"<<"\t\t"<<"Runs"<<"\t\t"<<"Highscore"<<"   "<<"Centuries"<<endl;
+	for( int i=0;i<10;i++)
+    {
+	in>> firstname >> secondname >> mat >> runs >> hs >> cent ;
+     	  out << firstname << " " << secondname << "\t\t" << mat<<" \t\t"<< runs <<"\t\t "<< hs <<"\t\t "<< cent << endl;
+		 secondname=' '+secondname;
+		 player[i]= firstname+secondname;
+	 matches[i]=mat;
+	 run[i]=runs;
+    highscore[i]=hs;
+		centuries[i]=cent;
+    }
+	display(player,matches,run,highscore,centuries);
+	max_hs(player,matches,run,highscore,centuries);
+	avg_matches(player,matches,run,highscore,centuries);
+	ascending_order(player,matches,run,highscore,centuries);
+	return 0;
+}
+
