@@ -1,0 +1,57 @@
+#include <iostream>
+#include <cstring>
+#include <string>
+using namespace std;
+struct booklist
+{
+	int bookcode;
+	string bookname;
+	string booksubject;
+	double bookprice;
+	int bookedition;
+};
+struct Author
+{
+	int Id;
+	string name;
+	booklist b;
+};
+void getdata(Author a[], int size, int z);
+void printdetails(Author a[], int size, int x);
+int main()
+{
+	Author a[3];
+	for (int i = 0; i < 3; i++)
+	{
+		getdata(a, 3, i);
+	}
+	for (int j = 0; j < 3; j++)
+	{
+		printdetails(a, 3, j);
+	}
+	return 0;
+}
+void getdata(Author a[], int size, int z)
+{
+	cout << "\t\tENTER DETAILS\t" << endl;
+	cout << "\nEnter Author's Id ";
+	cin >> a[z].Id;
+	cout << "\nEnter Author's Name: ";
+	cin >> a[z].name;
+	cout << "\nEnter Book code (int) " ;
+	cin >> a[z].b.bookcode;
+	cout << "\nBook name " ;
+	cin >> a[z].b.bookname;
+	cout << "\nBook subject";
+	cin >> a[z].b.booksubject;
+	cout << "\nBook price (double) ";
+	cin >> a[z].b.bookprice;
+	cout << "\nBook edition ";
+	cin >> a[z].b.bookedition;
+}
+void printdetails(Author a[], int size, int x)
+{
+	cout << "\t\tOutput\t" << endl;
+	cout << a[x].Id << "  " << a[x].name << " " << a[x].b.bookcode << " " << a[x].b.bookname << " " << a[x].b.booksubject << " ";
+	cout << a[x].b.bookprice << " " << a[x].b.bookedition << " " << endl;
+}
