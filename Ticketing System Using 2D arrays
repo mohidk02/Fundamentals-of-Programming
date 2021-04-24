@@ -1,0 +1,93 @@
+#include <iostream>
+#include <cstring>
+using namespace std;
+int main ()
+{
+char **p1;
+int rows1=13;
+int cols=6;
+p1 = new char *[13];
+for (int i=0; i<13; i++)
+{
+	p1[i]= new char [6];
+}
+cout << "This is a ticket booking system\n Ticket types are:\n 1-2: First class \n 3-7: Business Class\n 8-13: Economy Class\n Each Type has 6 seats \n Press -1 to Exit Menu " << endl;
+int e=0;
+while (e!=-1)
+{
+cout << " Enter ticket type (1-13)\n Type: ";
+int t;
+cin >> t;
+if (t>13)
+{break;}
+cout << "Enter desired seat (1-6)\n Choose Your Seat Number: ";
+int s;
+cin >>s;
+cout<<endl;
+if (s>6)
+{   cout<<"Out of range\n Exiting Program\n";
+    break;
+}
+if (p1[t-1][s-1] == 'X')
+{ cout << " already booked " << endl;
+}
+else 
+{
+if (t==1 || t==2)
+{ cout << " First class allocated " << endl;
+p1[t-1][s-1] = 'X';
+int n=1;
+cout<<"      1"<<" 2"<<" 3"<<" 4"<<" 5"<<" 6"<<endl;
+for (int i=0; i<13; i++)
+{
+	cout << " Row" << n << " ";
+	for (int j=0; j<6; j++)
+	{
+	 cout << p1[i][j] << " " ;
+	}
+	n++;
+	cout << endl;
+}
+}
+else if (t>=3 && t<=7)
+{
+cout << " Business class " << endl;
+p1[t-1][s-1] = 'X';
+int n =1;
+cout<<"      1"<<" 2"<<" 3"<<" 4"<<" 5"<<" 6"<<endl;
+for (int i=0; i<13; i++)
+{
+	cout << " Row" << n << " ";
+	for (int j=0; j<6; j++)
+	{
+	 cout << p1[i][j] << " " ;
+	}
+	n++;
+	cout << endl;
+}
+}
+else if (t>=8 && t<=13)
+{ cout << " Economy Class " << endl;
+p1[t-1][s-1] = 'X';
+int n=1;
+cout<<"      1"<<" 2"<<" 3"<<" 4"<<" 5"<<" 6"<<endl;
+for (int i=0; i<13; i++)
+{
+	cout << " Row" << n << " ";
+	for (int j=0; j<6; j++)
+	{
+	 cout << p1[i][j] << " " ;
+	}
+	n++;
+	cout << endl;
+}
+}
+else 
+{
+	exit(0);
+}
+e++;
+}
+}
+return 0;
+}
