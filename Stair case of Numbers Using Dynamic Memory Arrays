@@ -1,0 +1,55 @@
+#include <iostream>
+using namespace std;
+void addcolumns(int* &r, int c);
+void rowwiseinput(int *r, int c);
+void rowwiseprint(int *r, int c);
+int main()
+{
+	int **p, rows, cols;
+	cout << "Enter rows: ";
+	cin >> rows;
+	p = new int *[rows]; 
+	for (int i = 0; i< rows; i++)
+	{
+		int k = i + 1;
+		addcolumns(p[i], k);
+	}
+
+	//input
+	cout << "Fill array ";
+	for (int j = 0; j<rows; j++)
+	{
+		rowwiseinput(p[j], j+1);
+	}
+	cout << "Row wise print : " << endl;
+	for (int j = 0; j<rows; j++)
+	{
+		rowwiseprint(p[j], j + 1);
+		cout << endl;
+	}
+	return 0;
+}
+void addcolumns(int * &r, int c)
+{
+	r = new int[c];
+
+}
+void rowwiseinput(int *r, int c)
+{
+
+	for (int i = 0; i<c; i++)
+	{
+
+		cin >> r[i];
+	}
+}
+void rowwiseprint(int *r, int c)
+{
+
+	for (int i = 0; i<c; i++)
+	{
+
+		cout << r[i] << " ";
+	}
+}
+
