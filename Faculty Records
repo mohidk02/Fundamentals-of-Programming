@@ -1,0 +1,81 @@
+#include <iostream>
+#include <string>
+using namespace std;
+struct facultyMember
+{
+	int Id;
+	string FirstName;
+	string LastName;
+	string Designation;
+};
+
+void newrecord(facultyMember & fm);
+void printdetails(facultyMember fm);
+void sortid(facultyMember  fm[], int size);
+int main()
+{
+	facultyMember fm;
+    cout<<"Enter Faculty Information (MAX 3)\n";
+	newrecord(fm);
+	printdetails(fm);
+	facultyMember f1[3];
+	for (int i = 0; i<3; i++)
+	{
+		newrecord(f1[i]);
+	}
+	for (int j = 0; j < 3; j++)
+	{
+		printdetails(f1[j]);
+	}
+	sortid(f1, 3);
+	return 0;
+}
+void newrecord(facultyMember & fm)
+{
+	cout << "Enter ID: " << endl;
+	cin >> fm.Id;
+	cout << "Enter First Name: " << endl;
+	cin >> fm.FirstName;
+	cout << "Enter Second Name: " << endl;
+	cin >> fm.LastName;
+	cout << "Enter Designation: " << endl;
+	cin >> fm.Designation;
+}
+void printdetails(facultyMember fm)
+{
+	cout << "\nPRINTING " << endl;
+	cout << endl;
+	cout << fm.Id << endl;
+	cout << fm.FirstName << endl;
+	cout << fm.LastName << endl;
+	cout << fm.Designation << endl;
+}
+
+void sortid(facultyMember  fnew[], int size)
+{
+	facultyMember t;
+	for (int i = 0; i < size - 1; i++)
+	{
+		int t2 = i;
+
+		for (int j = i + 1; j < size; j++)
+		{
+
+			if (fnew[j].Id > fnew[t2].Id)
+			{
+				t2 = j;
+			}
+			else
+			{
+				t = fnew[j];
+				fnew[j] = fnew[t2];
+				fnew[t2] = t;
+			}
+		}
+	}
+	cout << "Sorted list :  " << endl;
+	for (int k = 0; k<3; k++)
+	{
+		printdetails(fnew[k]);
+	}
+}
