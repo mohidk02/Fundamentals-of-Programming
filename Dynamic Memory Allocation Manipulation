@@ -1,0 +1,130 @@
+#include<iostream>
+using namespace std;
+
+
+void initializearray(int* q,int s)
+{
+	for(int i=0;i<s;i++)
+	{
+		cout<<"\n\tEnter "<<i+1<<" element of array :";
+		cin>>*(q+i);
+	}
+}
+
+void printarray(int* q,int s)
+{
+	for(int i=0;i<s;i++)
+	{
+		cout<<*(q+i)<<"  ";
+	}
+}
+
+
+
+void merge(int* q1,int *q2,int *q3,int s1,int s2, int s3)
+{
+	int j=0;
+	for(int i=0;i<s1;i++)
+	{
+		*(q3+i)=*(q1+i);
+	}
+	for(int i=s1;i<s3;i++)
+	{
+		*(q3+i)=*(q2+j);
+		j++;
+	}
+}
+
+void markidentical(int* q,int s)
+{
+	int d=0;
+	for(int i=0;i<s;i++)
+	{
+		for(int j=i+1;j<s;j++)
+		{
+			if(*(q+i)==*(q+j))
+			{
+				*(q+j)=-999;
+			}
+		}
+	}
+	
+	
+}
+
+void eliminateidentical(int* q,int* q2,int s,int& s1)
+{
+	int z=0;
+		for(int i=0;i<s;i++)
+		{
+			if(*(q+i)!=-999)
+			{
+				*(q2+z)=*(q+i);
+				z++;
+			}
+		}
+	s1=z;
+	
+}
+
+void sortarray(int* q,int s)
+{
+	int r,k=0;
+	for(int i=0;i<s-1;i++)
+	{
+		r=*(q+i);
+		for(int j=i+1;j<s;j++)
+		{
+			if(r>*(q+j))
+			{
+				r=*(q+j);
+				k=j;
+			}
+		}
+		if(r<*(q+i))
+		{
+			*(q+k)=*(q+i);
+			*(q+i)=r;
+		}
+	}
+}
+
+int main()
+{
+	int s1,s2,s3,s4,d;
+	int *p1,*p2,*p3,*p4;
+	cout<<"\n\n\tEnter size of Array 1 : ";
+	cin>>s1;
+	p1=new int[s1];
+	initializearray(p1,s1);
+	cout<<"\n\n\tEnter size of Array 2 : ";
+	cin>>s2;
+	p2=new int[s2];
+	initializearray(p2,s2);
+	cout<<"\n\tArray 1 : ";
+	printarray(p1,s1);
+	cout<<"\n\tArray 2 : ";
+	printarray(p2,s2);
+	s3 = s1 + s2;
+	p3=new int[s3];
+	merge(p1,p2,p3,s1,s2,s3);
+	cout<<"\n\tArray [ Merged ] : ";
+	printarray(p3,s3);
+	markidentical(p3,s3);
+	cout<<"\n\tArray [ Marked ] : ";
+	printarray(p3,s3);
+	s4=s3;
+	p4=new int[s4];
+	eliminateidentical(p3,p4,s3,s4);
+	cout<<"\n\tArray [ Identical Eliminated ] : ";
+	printarray(p4,s4);
+	sortarray(p4,s4);
+	cout<<"\n\tArray [ Sorted ] : ";
+	printarray(p4,s4);
+	cout<<"\n\n\n";
+	delete []p1;
+	delete []p2;
+	delete []p3;
+	delete []p4;
+    return 0;
+}
