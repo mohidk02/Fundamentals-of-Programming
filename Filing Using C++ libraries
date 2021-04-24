@@ -119,6 +119,7 @@ out.open("Output.txt");
 	max_hs(player,matches,run,highscore,centuries);
 	avg_matches(player,matches,run,highscore,centuries);
 	ascending_order(player,matches,run,highscore,centuries);
+	
 	return 0;
 }
 
