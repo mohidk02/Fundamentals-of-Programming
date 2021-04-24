@@ -1,0 +1,84 @@
+#include <iostream>
+using namespace std;
+void input(int **a, int r, int c);
+void print(int **b, int r, int c);
+void transpose(int **p2, int **p1, int r2, int c2);
+void print_transpose(int **p2, int row2, int col2);
+int main()
+{
+	int **p1=0, rows, cols;
+	cout << "Enter Number of Rows: ";
+	cin >> rows;
+	cout << "\nEnter Number of Columns: ";
+	cin >> cols;
+	p1 = new int*[rows];
+	for (int i = 0; i < rows; i++)
+	{
+		p1[i] = new int[cols];
+	}
+    cout<<"Enter Values in Array\n";
+	input(p1, rows, cols);
+    cout<<"Original Array\n";
+	print(p1, rows, cols);
+	
+	//making 2nd array of reverse order
+	int row2 = cols;
+	int col2 = rows;
+	int **p2= 0;
+	p2 = new int*[row2];
+	for (int i = 0; i < row2; i++)
+	{
+		p2[i] = new int[col2];
+	}
+	transpose(p2, p1, row2, col2);
+    cout<<"Transpose Array\n";
+	print_transpose(p2, row2, col2);
+	
+	return 0;
+}
+void input(int **a, int r, int c)
+{
+	for (int j = 0; j < r; j++)
+	{
+		for (int k = 0; k < c; k++)
+		{
+            cout<<"\nEnter Value in row "<<j+1<<" Column "<<k+1<<" :";
+			cin >> a[j][k];
+		}
+	}
+
+}
+void print(int **b, int r, int c)
+{
+	for (int j = 0; j < r; j++)
+	{
+		for (int k = 0; k < c; k++)
+		{
+			cout << b[j][k] << " ";
+		}
+		cout << endl;
+	}
+}
+void transpose(int **p2, int **p1, int r2, int c2)
+{
+	for (int j = 0; j < c2; j++)
+	{
+		for (int k = 0; k < r2; k++)
+		{
+			p2[k][j] = p1[j][k];
+		}
+	}
+}
+void print_transpose(int **p2, int row2, int col2)
+{
+	//cout transpose
+	for (int j = 0; j < row2; j++)
+	{
+		for (int k = 0; k < col2; k++)
+		{
+			cout << p2[j][k] << " ";
+		}
+		cout << endl;
+	}
+
+}
