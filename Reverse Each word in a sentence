@@ -1,0 +1,63 @@
+#include<iostream>
+using namespace std;
+
+
+void Reverseword(char *p, int len)
+{
+	char temp;
+	for(int i=0; i<len/2; i++)
+	{
+		temp=p[i];
+		p[i]=p[len-i-1];
+		p[len-i-1]=temp;
+	}
+}
+
+void ReverseSentence(char* r)
+{
+	int x=0,k=0,l=0,in=0;
+	for(int i=0;i<100;i++)
+	{
+		if(r[i]=='.')
+		{
+			k=i;
+			i=100;
+		}
+	}
+	for(int i=0;i<=k;i++)
+	{
+		if(r[i]==' ')
+		{
+			l=i-in;
+			Reverseword((r+in),l);
+			in=in+l+1;
+		}
+		if(r[i]=='.')
+		{
+			l=i-in;
+			Reverseword((r+in),l);
+		}
+	}
+	cout<<"\n\n\tInverted Sentence : ";
+	for(int i=0;i<k;i++)
+	{
+		if(r[i]!=' ')
+		{
+			cout<<r[i];
+		}
+	}
+}
+
+
+int main()
+{
+    char input[100];
+	cout<<"\n\n\tEnter Sentence with fullstop in the end: ";
+    cin.getline(input,100);
+    //For example, user enters National University.
+	char *q=input;
+	ReverseSentence(q);
+	cout<<"\n\n\n";
+    return 0;
+// Now input array should be changed to lanoitaNytisrevinU.
+}
