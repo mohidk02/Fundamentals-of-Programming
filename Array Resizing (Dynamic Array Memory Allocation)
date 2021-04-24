@@ -69,7 +69,7 @@ int main()
 		p=new int[s];
 		initialize(p,s);
 		resize(p,s,s1);
-		cout<<"\n\n\n";	
+		cout<<"\n\n";	
 	}
     return 0;
 }
